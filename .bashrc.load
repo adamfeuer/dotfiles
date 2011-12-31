@@ -76,11 +76,19 @@ export AWS_RDS_HOME=$HOME/apps/RDScli
 # Python Virtual Environments
 # Setting up the VirtualEnv
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
-source /usr/local/share/python/virtualenvwrapper.sh
+
+BREW_VIRTUALENVWRAPPER=/usr/local/share/python/virtualenvwrapper.sh
+LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
+if [ -e $BREW_VIRTUALENVWRAPPER ]; then
+   source $BREW_VIRTUALENVWRAPPER
+   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+else
+   source $LINUX_VIRTUALENVWRAPPER
+fi
+
+
 
 export PATH=$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
 
