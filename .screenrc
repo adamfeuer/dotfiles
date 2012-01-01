@@ -1,0 +1,36 @@
+# .screenrc
+
+escape ^\\
+
+defscrollback 5000
+
+# let scrollbars work in xterm, gnome-terminal
+# (from http://www4.informatik.uni-erlangen.de/~jnweiger/screen-faq.html)
+termcapinfo xterm ti@:te@
+
+# add some cool stuff from the GNU screen-users mailing list
+# see http://lists.gnu.org/archive/html/screen-users/2004-08/msg00005.html
+
+# set the last line of the terminal to have a useful, pretty status line kinda
+# like the GNOME panel
+caption always "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %= %{mk}@%H %{yk}%D %{ck}%M%{wk} %{ck}%d %{gk}%c"
+
+# Enter copy mode (INSERT) PgUp/PgDn to move
+bindkey -k kI copy
+
+# Paste copy buffer (ESC-INSERT)
+bindkey "^[^[[2~" paste .
+
+# Use ALT-; and ALT-' to switch to previous and next window, respectively
+bindkey "^[;" prev
+bindkey "^['" next
+
+# detach on hangup
+autodetach on
+
+# don't display the copyright page
+startup_message off
+
+# emulate .logout message
+pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."  
+
