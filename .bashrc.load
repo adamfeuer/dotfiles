@@ -44,8 +44,6 @@ function f_popd()
 shopt -s nocaseglob
 alias vi=vim
 alias td='cd $OLDPWD'
-alias ls='ls -GFA'
-alias ll='ls -lGA '
 alias dirs='dirs -v'
 alias pd=f_pushd
 alias pop=f_popd
@@ -84,8 +82,12 @@ LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $BREW_VIRTUALENVWRAPPER ]; then
    source $BREW_VIRTUALENVWRAPPER
    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+   alias ls='ls -GFA'
+   alias ll='ls -GlA '
 else
    source $LINUX_VIRTUALENVWRAPPER
+   alias ls='ls -hFA --color=auto'
+   alias ll='ls -hlA --color=auto'
 fi
 
 
