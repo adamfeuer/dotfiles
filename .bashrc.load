@@ -96,7 +96,7 @@ if [ 'Linux' == `uname -a | cut -c -5` ]; then
    bin/start-ssh-agent
 else
    if [ -z `which brew` ]; then 
-      # on a Mac with brew installed
+      # on a Mac with brew installed 
       if [ -f `brew --prefix`/etc/bash_completion ]; then
          . `brew --prefix`/etc/bash_completion
       fi
