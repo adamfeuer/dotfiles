@@ -91,7 +91,7 @@ else
    alias ll='ls -hlA --color=auto'
 fi
 
-if [ 'Linux' == `uname -a | cut -c -5` ]
+if [ 'Linux' == `uname -a | cut -c -5` ]; then
    # on Linux
    bin/start-ssh-agent
 else
