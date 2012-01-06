@@ -1,3 +1,4 @@
+w
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -88,7 +89,15 @@ else
    source $LINUX_VIRTUALENVWRAPPER
 fi
 
-
+if [ -z `which brew` ]; then 
+# on Linux or brew is not installed
+  echo "On Linux"
+else
+# on a Mac with brew installed
+   if [ -f `brew --prefix`/etc/bash_completion ]; then
+      . `brew --prefix`/etc/bash_completion
+   fi
+fi
 
 export PATH=$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
 
