@@ -1,1 +1,1 @@
-. $HOME/.bashrc.load
+. $HOME/.bashrc

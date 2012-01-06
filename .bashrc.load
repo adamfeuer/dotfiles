@@ -105,3 +105,5 @@ fi
 
 export PATH=$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
 
+
+. $HOME/.bashrc.load
