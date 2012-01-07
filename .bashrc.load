@@ -129,8 +129,8 @@ export PIP_RESPECT_VIRTUALENV=true
 BREW_VIRTUALENVWRAPPER=/usr/local/share/python/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $BREW_VIRTUALENVWRAPPER ]; then
-   source $BREW_VIRTUALENVWRAPPER
    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+   source $BREW_VIRTUALENVWRAPPER
    alias ls='ls -GFA'
    alias ll='ls -GlA '
 else
