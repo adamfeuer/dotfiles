@@ -134,9 +134,11 @@ if [ -e $BREW_VIRTUALENVWRAPPER ]; then
    alias ls='ls -GFA'
    alias ll='ls -GlA '
 else
-   source $LINUX_VIRTUALENVWRAPPER
-   alias ls='ls -hFA --color=auto'
-   alias ll='ls -hlA --color=auto'
+   if [ -e $LINUX_VIRTUALENVWRAPPER ]; then
+      source $LINUX_VIRTUALENVWRAPPER
+      alias ls='ls -hFA --color=auto'
+      alias ll='ls -hlA --color=auto'
+   fi
 fi
 
 if [ 'Linux' == `uname -a | cut -c -5` ]; then
