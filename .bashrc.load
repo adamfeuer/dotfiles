@@ -91,8 +91,8 @@ function f_popd()
 }
 
 shopt -s nocaseglob
-alias ls='ls -FA'
-alias ll='ls -l'
+alias ls='ls -hFA'
+alias ll='ls -hlA'
 alias vi=vim
 alias td='cd $OLDPWD'
 alias dirs='dirs -v'
@@ -133,22 +133,22 @@ LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $BREW_VIRTUALENVWRAPPER ]; then
    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
    source $BREW_VIRTUALENVWRAPPER
-   alias ls='ls -GFA'
-   alias ll='ls -GlA '
 else
    if [ -e $LINUX_VIRTUALENVWRAPPER ]; then
       source $LINUX_VIRTUALENVWRAPPER
-      alias ls='ls -hFA --color=auto'
-      alias ll='ls -hlA --color=auto'
    fi
 fi
 
 if [ 'Linux' == `uname -a | cut -c -5` ]; then
    # on Linux
+   alias ls='ls -GFA'
+   alias ll='ls -GlA '
    start_ssh_agent_if_necessary
 else
    if [ ! -z `which brew` ]; then 
       # on a Mac with brew installed
+      alias ls='ls -hFA --color=auto'
+      alias ll='ls -hlA --color=auto'
       if [ -f `brew --prefix`/etc/bash_completion ]; then
          . `brew --prefix`/etc/bash_completion
       fi
