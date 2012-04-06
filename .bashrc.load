@@ -91,6 +91,8 @@ function f_popd()
 }
 
 shopt -s nocaseglob
+alias ls='ls -FA'
+alias ll='ls -l'
 alias vi=vim
 alias td='cd $OLDPWD'
 alias dirs='dirs -v'
