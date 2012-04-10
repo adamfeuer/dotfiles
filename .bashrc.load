@@ -141,15 +141,15 @@ fi
 
 if [ 'Linux' == `uname -a | cut -c -5` ]; then
    # on Linux
-   alias ls='ls -GFA'
-   alias ll='ls -GlA '
+   alias ls='ls -hFA --color=auto'
+   alias ll='ls -hlA --color=auto'
    start_ssh_agent_if_necessary
 else
    if [ ! -z `which brew` ]; then 
       # on a Mac with brew installed
-      alias ls='ls -hFA --color=auto'
-      alias ll='ls -hlA --color=auto'
       if [ -f `brew --prefix`/etc/bash_completion ]; then
+         alias ls='ls -GFA'
+         alias ll='ls -GlA '
          . `brew --prefix`/etc/bash_completion
       fi
    fi
