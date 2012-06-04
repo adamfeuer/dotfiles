@@ -104,7 +104,7 @@ alias d=dirs
 alias hgr='history | grep'
 
 export EDITOR='vim'
-export DISPLAY=:0.0
+export P4CONFIG=.p4config
 
 EC2_BASE=$HOME/.ec2
 export EC2_HOME=/usr/local/share/ec2
