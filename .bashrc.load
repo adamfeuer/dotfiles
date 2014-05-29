@@ -2,7 +2,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export TERM=xterm-color
+# vi editing mode
+#set -o vi
+
+export TERM=xterm-256color
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -100,18 +103,22 @@ alias 6="pd +6"
 alias 7="pd +7"
 alias 8="pd +8"
 alias 9="pd +9"
-alias d=dirs
 alias hgr='history | grep'
+alias anaconda='source $HOME/apps/anaconda/bin/activate $HOME/apps/anaconda'
 
 export EDITOR='vim'
 export P4CONFIG=.p4config
 
 EC2_BASE=$HOME/.ec2
-export EC2_HOME=/usr/local/share/ec2
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-export EC2_PRIVATE_KEY=$EC2_BASE/adamf.pem
-export EC2_CERT=$EC2_BASE/adamf.pem
-export AWS_RDS_HOME=$HOME/apps/RDScli
+#export EC2_HOME=/usr/local/share/ec2
+#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+#export EC2_PRIVATE_KEY=$EC2_BASE/adamf.pem
+#export EC2_CERT=$EC2_BASE/adamf.pem
+#export AWS_RDS_HOME=$HOME/apps/RDScli
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
+export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 # Python Virtual Environments
 # Setting up the VirtualEnv
@@ -124,6 +131,8 @@ LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $BREW_VIRTUALENVWRAPPER ]; then
    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
    source $BREW_VIRTUALENVWRAPPER
+   alias ls='ls -GFA'
+   alias ll='ls -GlA '
 else
    if [ -e $LINUX_VIRTUALENVWRAPPER ]; then
       source $LINUX_VIRTUALENVWRAPPER
@@ -146,5 +155,10 @@ else
    fi
 fi
 
-export PATH=$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
+export GOPATH=$HOME/personal/proj/go
+
+# bash bookmarks
+source ~/bin/bashmarks.sh
+
+export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
 

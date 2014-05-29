@@ -1,10 +1,11 @@
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
 set expandtab
-filetype on
 syntax enable
-colorscheme zellner
+set hidden
+set nocompatible
+"colorscheme zellner
 
 " for files encrypted using ccrypt(1)
 augroup CPT
@@ -22,4 +23,34 @@ augroup CPT
   " encrypted; prepare for continuing to edit the file
   au BufWritePost *.cpt     silent undo | set nobin
 augroup END
+
+" Pathogen bundler
+call pathogen#infect()
+
+" NERDTree key
+noremap <C-t> :tabnew<CR>:NERDTree<CR>
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-N> :tabnew<CR>
+
+" VimClojure
+syntax on
+filetype plugin indent on
+
+" Powerline settings
+set encoding=utf-8
+set t_Co=256 
+let g:Powerline_symbols = 'fancy'
+set laststatus=2
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+" golang
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOPATH/misc/vim
+set runtimepath+=$HOME/.vimrc/after
+filetype plugin indent on
+syntax on
 
