@@ -1,0 +1,11 @@
+set input-meta on
+set output-meta on
+set convert-meta off
+
+tab: complete
+set completion-ignore-case on
+set blink-matching-paren on
+
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
