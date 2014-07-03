@@ -109,16 +109,9 @@ alias anaconda='source $HOME/apps/anaconda/bin/activate $HOME/apps/anaconda'
 export EDITOR='vim'
 export P4CONFIG=.p4config
 
-EC2_BASE=$HOME/.ec2
-#export EC2_HOME=/usr/local/share/ec2
-#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-#export EC2_PRIVATE_KEY=$EC2_BASE/adamf.pem
-#export EC2_CERT=$EC2_BASE/adamf.pem
-#export AWS_RDS_HOME=$HOME/apps/RDScli
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
+if [ -e '.awsrc' ] ; then
+        source .awsrc
+fi
 
 # Python Virtual Environments
 # Setting up the VirtualEnv
@@ -146,7 +139,7 @@ if [ 'Linux' == `uname -a | cut -c -5` ]; then
    # on Linux
    alias ls='ls -hFA --color=auto'
    alias ll='ls -hlA --color=auto'
-   start_ssh_agent_if_necessary
+   #start_ssh_agent_if_necessary
 else
    if [ ! -z `which brew` ]; then 
       # on a Mac with brew installed
