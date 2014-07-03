@@ -109,10 +109,6 @@ alias anaconda='source $HOME/apps/anaconda/bin/activate $HOME/apps/anaconda'
 export EDITOR='vim'
 export P4CONFIG=.p4config
 
-if [ -e '.awsrc' ] ; then
-        source .awsrc
-fi
-
 # Python Virtual Environments
 # Setting up the VirtualEnv
 export WORKON_HOME=$HOME/.virtualenvs
@@ -155,6 +151,10 @@ export GOPATH=$HOME/personal/proj/go
 
 # bash bookmarks
 source ~/bin/bashmarks.sh
+
+if [ -e '.bashrc.local' ] ; then
+        source .bashrc.local
+fi
 
 export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
 
