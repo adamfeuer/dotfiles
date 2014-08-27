@@ -133,7 +133,7 @@ case $OS in
     alias ll='ls -hlA --color=auto'
     start_ssh_agent_if_necessary
     ;;
-  'darwin') 
+  'Darwin') 
     OS='Mac'
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
     source $BREW_VIRTUALENVWRAPPER
