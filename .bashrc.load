@@ -122,14 +122,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
-<<<<<<< HEAD
-if [ 'Linux' == `uname -a | cut -c -5` ]; then
-   # on Linux
-   alias ls='ls -hFA --color=auto'
-   alias ll='ls -hlA --color=auto'
-   #start_ssh_agent_if_necessary
-else
-=======
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
 case $OS in
@@ -147,15 +139,6 @@ case $OS in
     source $BREW_VIRTUALENVWRAPPER
     alias ls='ls -GFA'
     alias ll='ls -GlA '
->>>>>>> 724b73697440f0c7afa0e341ef5868c65bce6cf1
-   if [ ! -z `which brew` ]; then 
-      # on a Mac with brew installed
-      if [ -f `brew --prefix`/etc/bash_completion ]; then
-         alias ls='ls -GFA'
-         alias ll='ls -GlA '
-         . `brew --prefix`/etc/bash_completion
-      fi
-   fi
     ;;
 esac
 
