@@ -20,7 +20,9 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Color prompt
-export PS1="\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;34m\][$USER@$HOSTNAME]$ \[\033[0m\]"
+source ~/bin/color-names.sh
+source ~/bin/git-prompt.sh
+export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Blue\][$USER@$HOSTNAME]$ \[$Black\]"
 
 # Function definitions.
 
@@ -117,26 +119,35 @@ export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
-BREW_VIRTUALENVWRAPPER=/usr/local/share/python/virtualenvwrapper.sh
+BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
-if [ -e $BREW_VIRTUALENVWRAPPER ]; then
-   export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-   source $BREW_VIRTUALENVWRAPPER
-   alias ls='ls -GFA'
-   alias ll='ls -GlA '
-else
-   if [ -e $LINUX_VIRTUALENVWRAPPER ]; then
-      export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-      source $LINUX_VIRTUALENVWRAPPER
-   fi
-fi
 
+<<<<<<< HEAD
 if [ 'Linux' == `uname -a | cut -c -5` ]; then
    # on Linux
    alias ls='ls -hFA --color=auto'
    alias ll='ls -hlA --color=auto'
    #start_ssh_agent_if_necessary
 else
+=======
+# Detect the platform (similar to $OSTYPE)
+OS="`uname`"
+case $OS in
+  'Linux')
+    OS='Linux'
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+    source $LINUX_VIRTUALENVWRAPPER
+    alias ls='ls -hFA --color=auto'
+    alias ll='ls -hlA --color=auto'
+    start_ssh_agent_if_necessary
+    ;;
+  'Darwin') 
+    OS='Mac'
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+    source $BREW_VIRTUALENVWRAPPER
+    alias ls='ls -GFA'
+    alias ll='ls -GlA '
+>>>>>>> 724b73697440f0c7afa0e341ef5868c65bce6cf1
    if [ ! -z `which brew` ]; then 
       # on a Mac with brew installed
       if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -145,16 +156,19 @@ else
          . `brew --prefix`/etc/bash_completion
       fi
    fi
-fi
+    ;;
+esac
 
 export GOPATH=$HOME/personal/proj/go
 
 # bash bookmarks
 source ~/bin/bashmarks.sh
 
-if [ -e '.bashrc.local' ] ; then
-        source .bashrc.local
+#local stuff
+if [ -e "$HOME/.bashrc.local" ]; then
+        source "$HOME/.bashrc.local"
 fi
 
 export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
+
 
