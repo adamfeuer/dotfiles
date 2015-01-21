@@ -22,7 +22,7 @@ shopt -s checkwinsize
 # Color prompt
 source ~/bin/color-names.sh
 source ~/bin/git-prompt.sh
-export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Blue\][$USER@$HOSTNAME]$ \[$Black\]"
+export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Blue\][$USER@$HOSTNAME]$ \[$White\]"
 
 # Function definitions.
 
