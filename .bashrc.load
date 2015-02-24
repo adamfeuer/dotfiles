@@ -151,8 +151,8 @@ if [ -e /etc/bash_completion.d/docker.io ]; then
 fi
 
 # git completion
-if [ -e source /etc/bash_completion.d/git ]; then
-    source source /etc/bash_completion.d/git
+if [ -e /etc/bash_completion.d/git ]; then
+    source /etc/bash_completion.d/git
 fi
 
 
