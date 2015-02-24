@@ -22,7 +22,7 @@ shopt -s checkwinsize
 # Color prompt
 source ~/bin/color-names.sh
 source ~/bin/git-prompt.sh
-export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Blue\][$USER@$HOSTNAME]$ \[$Black\]"
+export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Blue\][$USER@$HOSTNAME]$ \[$White\]"
 
 # Function definitions.
 
@@ -139,14 +139,6 @@ case $OS in
     source $BREW_VIRTUALENVWRAPPER
     alias ls='ls -GFA'
     alias ll='ls -GlA '
-   if [ ! -z `which brew` ]; then 
-      # on a Mac with brew installed
-      if [ -f `brew --prefix`/etc/bash_completion ]; then
-         alias ls='ls -GFA'
-         alias ll='ls -GlA '
-         . `brew --prefix`/etc/bash_completion
-      fi
-   fi
     ;;
 esac
 
