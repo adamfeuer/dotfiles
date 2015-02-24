@@ -150,10 +150,19 @@ case $OS in
     ;;
 esac
 
-export GOPATH=$HOME/personal/proj/go
-
 # bash bookmarks
 source ~/bin/bashmarks.sh
+
+# docker completion
+if [ -e /etc/bash_completion.d/docker.io ]; then
+    source /etc/bash_completion.d/docker.io
+fi
+
+# git completion
+if [ -e source /etc/bash_completion.d/git ]; then
+    source source /etc/bash_completion.d/git
+fi
+
 
 #local stuff
 if [ -e "$HOME/.bashrc.local" ]; then
