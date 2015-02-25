@@ -132,6 +132,8 @@ case $OS in
     alias ls='ls -hFA --color=auto'
     alias ll='ls -hlA --color=auto'
     start_ssh_agent_if_necessary
+    # all completion
+    source /etc/bash_completion
     ;;
   'Darwin') 
     OS='Mac'
@@ -139,20 +141,22 @@ case $OS in
     source $BREW_VIRTUALENVWRAPPER
     alias ls='ls -GFA'
     alias ll='ls -GlA '
+    source /usr/local/etc/bash_completion
+#    for file in /usr/local/etc/bash_completion.d/* ; do
+#        source "$file"
+#    done
     ;;
 esac
 
 # bash bookmarks
 source ~/bin/bashmarks.sh
 
-# docker completion
+
+# completion
 if [ -e /etc/bash_completion.d/docker.io ]; then
     source /etc/bash_completion.d/docker.io
 fi
-
-# git completion
-source .git-completion.bash
-
+source $HOME/.git-completion.bash
 
 #local stuff
 if [ -e "$HOME/.bashrc.local" ]; then

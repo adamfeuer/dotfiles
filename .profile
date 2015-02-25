@@ -1,2 +1,1 @@
-#source $HOME/.bashrc.load
-
+source $HOME/.bashrc.load
