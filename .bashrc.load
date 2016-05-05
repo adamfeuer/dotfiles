@@ -126,7 +126,7 @@ LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 OS="`uname`"
 case $OS in
   'Linux')
-    OS='Linux'
+    export OS='Linux'
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
     source $LINUX_VIRTUALENVWRAPPER
     alias ls='ls -hFA --color=auto'
@@ -136,7 +136,7 @@ case $OS in
     source /etc/bash_completion
     ;;
   'Darwin') 
-    OS='Mac'
+    export OS='Mac'
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
     source $BREW_VIRTUALENVWRAPPER
     alias ls='ls -GFA'
