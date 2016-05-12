@@ -158,11 +158,10 @@ if [ -e /etc/bash_completion.d/docker.io ]; then
 fi
 source $HOME/.git-completion.bash
 
-#local stuff
+export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
+
+#  local stuff - done here so path can be extended
 if [ -e "$HOME/.bashrc.local" ]; then
         source "$HOME/.bashrc.local"
 fi
-
-export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
-
 
