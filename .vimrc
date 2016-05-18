@@ -5,7 +5,11 @@ set expandtab
 syntax enable
 set hidden
 set nocompatible
-"colorscheme zellner
+colorscheme zellner
+
+if $TERM == "xterm-256color"
+          set t_Co=256
+endif
 
 " for files encrypted using ccrypt(1)
 augroup CPT
