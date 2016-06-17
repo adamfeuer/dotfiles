@@ -106,7 +106,7 @@ alias 7="pd +7"
 alias 8="pd +8"
 alias 9="pd +9"
 alias hgr='history | grep'
-alias anaconda='source $HOME/apps/anaconda/bin/activate $HOME/apps/anaconda'
+alias docker-rm-exited="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
 
 export EDITOR='vim'
 export P4CONFIG=.p4config
