@@ -86,6 +86,17 @@ function f_popd()
     dirs -v
 }
 
+    
+function title {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+    fi
+}
+
 shopt -s nocaseglob
 alias ls='ls -hFA'
 alias ll='ls -hlA'
@@ -107,6 +118,8 @@ alias 8="pd +8"
 alias 9="pd +9"
 alias hgr='history | grep'
 alias docker-rm-exited="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
+alias docker-ips="docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \$(docker ps -aq)"
+alias pyclean="find . -type f -iname '*.pyc' -delete"
 
 export EDITOR='vim'
 export P4CONFIG=.p4config
@@ -121,6 +134,9 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
+
+# iterm window title
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
