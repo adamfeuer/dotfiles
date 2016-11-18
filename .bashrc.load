@@ -136,7 +136,7 @@ BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
 # iterm window title
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
