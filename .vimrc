@@ -6,7 +6,6 @@ syntax enable
 set hidden
 set nocompatible
 "colorscheme zellner
-"
 
 " Python 2/3
 if has('python')
@@ -19,6 +18,10 @@ elseif has('python3')
   let g:pymode_python = 'python3'
 else
   let g:loaded_jedi = 1
+endif
+
+if $TERM == "xterm-256color"
+          set t_Co=256
 endif
 
 " for files encrypted using ccrypt(1)
@@ -37,9 +40,6 @@ augroup CPT
   " encrypted; prepare for continuing to edit the file
   au BufWritePost *.cpt     silent undo | set nobin
 augroup END
-
-" Pathogen bundler
-"call pathogen#infect()
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -82,4 +82,5 @@ set runtimepath+=$GOPATH/misc/vim
 set runtimepath+=$HOME/.vimrc/after
 filetype plugin indent on
 syntax on
+
 

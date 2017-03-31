@@ -22,7 +22,7 @@ shopt -s checkwinsize
 # Color prompt
 source ~/bin/color-names.sh
 source ~/bin/git-prompt.sh
-export PS1="\[$IPurple\]\$(__git_ps1) \[$Black\][\w]\[\033[0m\]\n\[$Black\][$USER@$HOSTNAME]$ \[$White\]"
+export PS1="\[$IPurple\]\$(__git_ps1) \[$Green\][\w]\[\033[0m\]\n\[$Green\][$USER@$HOSTNAME]$ \[$White\]"
 
 # Function definitions.
 
@@ -86,6 +86,17 @@ function f_popd()
     dirs -v
 }
 
+    
+function title {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+    fi
+}
+
 shopt -s nocaseglob
 alias ls='ls -hFA'
 alias ll='ls -hlA'
@@ -106,7 +117,9 @@ alias 7="pd +7"
 alias 8="pd +8"
 alias 9="pd +9"
 alias hgr='history | grep'
-alias anaconda='source $HOME/apps/anaconda/bin/activate $HOME/apps/anaconda'
+alias docker-rm-exited="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
+alias docker-ips="docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \$(docker ps -aq)"
+alias pyclean="find . -type f -iname '*.pyc' -delete"
 
 export EDITOR='vim'
 export P4CONFIG=.p4config
@@ -122,11 +135,14 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
+# iterm window title
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
 case $OS in
   'Linux')
-    OS='Linux'
+    export OS='Linux'
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
     source $LINUX_VIRTUALENVWRAPPER
     alias ls='ls -hFA --color=auto'
@@ -136,7 +152,7 @@ case $OS in
     source /etc/bash_completion
     ;;
   'Darwin') 
-    OS='Mac'
+    export OS='Mac'
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
     source $BREW_VIRTUALENVWRAPPER
     alias ls='ls -GFA'
@@ -163,7 +179,7 @@ export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/b
 # pyenv
 eval "$(pyenv init -)"
 
-#local stuff
+#  local stuff - done here so path can be extended
 if [ -e "$HOME/.bashrc.local" ]; then
         source "$HOME/.bashrc.local"
 fi
