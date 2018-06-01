@@ -126,17 +126,22 @@ export P4CONFIG=.p4config
 
 # Python Virtual Environments
 # Setting up the VirtualEnv
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME="$HOME/.virtualenvs"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
-BREW_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
+BREW_VIRTUALENVWRAPPER="$HOME/.pyenv/shims/virtualenvwrapper.sh"
 LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
 # iterm window title
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
+# pyenv
+export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
+
+eval "$(pyenv init -)"
 
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
@@ -154,7 +159,12 @@ case $OS in
   'Darwin') 
     export OS='Mac'
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-    source $BREW_VIRTUALENVWRAPPER
+    # note you need to:
+    #  brew install pyenv
+    #  brew install pyenv-virtualenvwrapper
+    #  pyenv install 2.7.14
+    #  pyenv global 2.7.14
+    pyenv virtualenvwrapper
     alias ls='ls -GFA'
     alias ll='ls -GlA '
     source /usr/local/etc/bash_completion
@@ -167,17 +177,12 @@ esac
 # bash bookmarks
 source ~/bin/bashmarks.sh
 
-
 # completion
 if [ -e /etc/bash_completion.d/docker.io ]; then
     source /etc/bash_completion.d/docker.io
 fi
 source $HOME/.git-completion.bash
 
-export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
-
-# pyenv
-eval "$(pyenv init -)"
 
 #  local stuff - done here so path can be extended
 if [ -e "$HOME/.bashrc.local" ]; then
