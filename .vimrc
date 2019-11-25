@@ -53,7 +53,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'hylang/vim-hy'
 
 " more Plugin commands
 " ...

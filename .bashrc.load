@@ -125,31 +125,21 @@ export EDITOR='vim'
 export P4CONFIG=.p4config
 
 # Python Virtual Environments
-# Setting up the VirtualEnv
-export WORKON_HOME="$HOME/.virtualenvs"
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-export PIP_RESPECT_VIRTUALENV=true
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-
-BREW_VIRTUALENVWRAPPER="$HOME/.pyenv/shims/virtualenvwrapper.sh"
-LINUX_VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
 # iterm window title
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 # pyenv
-export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$EC2_BASE/bin
-
+export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Detect the platform (similar to $OSTYPE)
 OS="`uname`"
 case $OS in
   'Linux')
     export OS='Linux'
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-    source $LINUX_VIRTUALENVWRAPPER
     alias ls='ls -hFA --color=auto'
     alias ll='ls -hlA --color=auto'
     start_ssh_agent_if_necessary
@@ -158,13 +148,6 @@ case $OS in
     ;;
   'Darwin') 
     export OS='Mac'
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-    # note you need to:
-    #  brew install pyenv
-    #  brew install pyenv-virtualenvwrapper
-    #  pyenv install 2.7.14
-    #  pyenv global 2.7.14
-    pyenv virtualenvwrapper
     alias ls='ls -GFA'
     alias ll='ls -GlA '
     source /usr/local/etc/bash_completion
