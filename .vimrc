@@ -1,8 +1,14 @@
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+if has('python3')
+  silent! python3 1
+endif
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=0
 set expandtab
-syntax enable
+set textwidth=120
+
+syntax on
 set hidden
 set nocompatible
 "colorscheme zellner
@@ -52,12 +58,14 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jmcantrell/vim-virtualenv'
-
+Plugin 'sheerun/vim-polyglot'
+Plugin 'otherjoel/vim-pollen'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " more Plugin commands
 " ...
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
 
 " NERDTree key
 noremap <C-t> :tabnew<CR>:NERDTree<CR>
@@ -66,6 +74,8 @@ map  <C-h> :tabp<CR>
 map  <C-N> :tabnew<CR>
 
 " Powerline settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
 set encoding=utf-8
 set t_Co=256 
 let g:Powerline_symbols = 'fancy'
@@ -82,4 +92,26 @@ set runtimepath+=$HOME/.vimrc/after
 filetype plugin indent on
 syntax on
 
+"autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
+"autocmd Filetype c++ setlocal ts=2 sw=4 sts=0 expandtab
+"autocmd Filetype arduino setlocal ts=2 sw=2 sts=0 expandtab
+"autocmd BufRead,BufNewFile .c,*.h,*.cpp,*.ino ts=4 sw=4 sts=0 expandtab
 
+" pollen
+augroup configgroup
+    autocmd!
+    
+    "Set Pollen syntax for files with these extensions:
+    au! BufRead,BufNewFile *.pm set filetype=pollen
+    au! BufRead,BufNewFile *.pp set filetype=pollen
+    au! BufRead,BufNewFile *.ptree set filetype=pollen
+    
+    " Suggested editor settings:
+    autocmd FileType pollen setlocal wrap      " Soft wrap (don't affect buffer)
+    autocmd FileType pollen setlocal linebreak " Wrap on word-breaks only
+augroup END
+
+" tabs
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nmap <C-t> :NERDTreeToggle<CR>
