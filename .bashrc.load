@@ -1,3 +1,4 @@
+#!/usr/local/bin/bash
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -91,9 +92,9 @@ function title {
     if [ "$1" ]
     then
         unset PROMPT_COMMAND
-        echo -ne "\033]0;${*}\007"
+        printf "\033]0;%s\007" "$*"
     else
-        export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+        export PROMPT_COMMAND='printf "\033]0;%s\007" "${PWD##*/}"'
     fi
 }
 
@@ -127,16 +128,18 @@ export P4CONFIG=.p4config
 # Python Virtual Environments
 
 # iterm window title
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+export PROMPT_COMMAND='printf "\033]0;%s\007" "${PWD##*/}"'
+
+# path
+export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/homebrew/bin:/opt/homebrew/sbin
 
 # pyenv
-export PATH=$HOME/localbin:$HOME/bin:/opt/local/bin:/usr/local/sbin:/usr/local/bin:/usr/local/share/python:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
 
 # Detect the platform (similar to $OSTYPE)
-OS="`uname`"
+OS="$(uname)"
 case $OS in
   'Linux')
     export OS='Linux'
@@ -150,10 +153,7 @@ case $OS in
     export OS='Mac'
     alias ls='ls -GFA'
     alias ll='ls -GlA '
-    source /usr/local/etc/bash_completion
-#    for file in /usr/local/etc/bash_completion.d/* ; do
-#        source "$file"
-#    done
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     ;;
 esac
 
